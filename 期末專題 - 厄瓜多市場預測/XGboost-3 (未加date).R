@@ -132,29 +132,23 @@ gc()
 dtrain <- xgb.DMatrix(data = as.matrix(train_set.x), label =  as.matrix(train_set.y))
 dvalidation <- xgb.DMatrix(data = as.matrix(validation_set.x))
 xgb.params = list(
-  #col的抽样比例，越高表示每棵树使用的col越多，会增加每棵小树的复杂度
-  colsample_bytree = 0.5,                    
-  # row的抽样比例，越高表示每棵树使用的col越多，会增加每棵小树的复杂度
-  subsample = 0.5,                      
+  colsample_bytree = 0.5,
+  subsample = 0.5,
   booster = "gbtree",
-  # 树的最大深度，越高表示模型可以长得越深，模型复杂度越高
   max_depth = 2,           
-  # boosting会增加被分错的数据权重，而此参数是让权重不会增加的那么快，因此越大会让模型愈保守
   eta = 0.015,
   # 或用'mae'也可以
-  eval_metric = "rmse",                      
+  eval_metric = "rmse",
   objective = "reg:linear",
-  # 越大，模型会越保守，相对的模型复杂度比较低
   gamma = 0)
 
 cv.model = xgb.cv(
   params = xgb.params,
   data = dtrain,
-  nfold = 5,     # 5-fold cv
-  nrounds=200,   # 测试1-100，各个树总数下的模型
-  # 如果当nrounds < 30 时，就已经有overfitting情况发生，那表示不用继续tune下去了，可以提早停止                
-  early_stopping_rounds = 30, 
-  print_every_n = 20 # 每20个单位才显示一次结果，
+  nfold = 5,
+  nrounds=200,             
+  early_stopping_rounds = 30,
+  print_every_n = 20
 )
 
 tmp <- cv.model$evaluation_log
