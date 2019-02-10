@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8">
+    </script>
+</head>
+<body>
+    <script>
+    
+    var quantize = d3.scale.quantize()
+                    .domain([0,50])
+                    .range(["#5555FF","#5599FF","#33CCFF","#33FFFF","#33FFDD","#33FFAA","#33FF33","#99FF33","#CCFF33","#FFFF33"])
+                    
+    var r = [45,40,35,30,25,20,15,10,5]
+
+    var svg = d3.select('body').append("svg")
+                .attr('width', 400)
+                .attr('height', 400)
+    
+    svg.selectAll("circle")
+        .data(r)
+        .enter()
+        .append("circle")
+        .attr("cx",function(d,i){
+           return 50 + i * 30 
+        })
+        .attr("cy",function(d,i){
+           return 50 + i * 30 
+        })
+        .attr("r",function(d,i){   
+           return d 
+        })
+        .attr("fill",function(d){
+            return quantize(d)
+        })
+    </script>
+</body>
+</html>
