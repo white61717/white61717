@@ -1,0 +1,31 @@
+
+{
+    "name":"厄瓜多",
+    "provinces":
+   [ 
+    {"population":534092,"name":"Esmeraldas"},
+    {"population":164524,"name":"Carchi"},
+    {"population":176472,"name":"Sucumbios"},
+    {"population":136396,"name":"Orellana"},
+    {"population":83933,"name":"Pastaza"},
+    {"population":147940,"name":"Morona Santiago"},
+    {"population":91376,"name":"Zamora Chinchipe"},
+    {"population":448966,"name":"Loja"},
+    {"population":600659,"name":"El Oro"},
+    {"population":3645483,"name":"Guayas"},
+    {"population":25124,"name":"Galápagos"},
+    {"population":308693,"name":"Santa Elena"},
+    {"population":1369780,"name":"Manabi"},
+    {"population":712127,"name":"Azuay"},
+    {"population":225184,"name":"Cañar"},
+    {"population":103697,"name":"Napo"},
+    {"population":504583,"name":"Tungurahua"},
+    {"population":458581,"name":"Chimborazo"},
+    {"population":183641,"name":"Bolivar"},
+    {"population":398244,"name":"Imbabura"},
+    {"population":409205,"name":"Cotopaxi"},
+    {"population":778115,"name":"Los Rios"},
+    {"population":2576287,"name":"Pichincha"},
+    {"population":368013,"name":"Santo Domingo de los Tsachilas"}
+    ]
+}
