@@ -1,0 +1,22 @@
+{
+    "name":"厄瓜多",
+    "provinces":
+   [ 
+    {"name": "Imbabura","value":11451269.0},
+    {"name": "Tungurahua","value":40304398.0},
+    {"name": "Pichincha","value":585049277.0},
+    {"name": "Azuay","value":49167794.0},
+    {"name": "Bolivar","value":13049505.0},
+    {"name": "Chimborazo","value":11387919.0},
+    {"name": "Loja","value":18857920.0},
+    {"name": "Cotopaxi","value":21182218.0},
+    {"name": "Esmeraldas","value":16391689.0},
+    {"name": "Manabi","value":24958556.0},
+    {"name": "Santo Domingo de los Tsachilas","value":35834316.0},
+    {"name": "Santa Elena","value":11420996.0},
+    {"name": "Guayas","value":165152157.0},
+    {"name": "El Oro","value":33386764.0},
+    {"name": "Los Rios","value":31925289.0},
+    {"name": "Pastaza","value":4090202.0}
+   ]
+}
