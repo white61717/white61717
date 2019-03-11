@@ -1,0 +1,496 @@
+<!-- reveal.js v3.6.0 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="topojson.js"></script>
+<script src="geoMap.js"></script>
+<link rel="stylesheet" href="map.css" />
+
+<head>
+    <style>
+        .direction{
+            font-size:18px;
+            margin: 10px;
+            background-color: lightyellow;
+            text-align: left;width:300px;
+            position: relative;
+            left: 340px;
+        }
+        #reveal { width: 100% }
+        #slides { 
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+    </style>
+</head>
+
+
+
+<body>
+    
+<div class="reveal" id="reveal">
+    <div class="slides" id="slides">
+        <section>
+            <section>
+                <div>
+                    <img src="./pic/overview/overview1.JPG" alt="" title="" width=80% height=96% >
+                </div>
+                <div class="direction">
+<!--                     
+                    <h6> Go Right : Slides</h6>
+                    <h6> Go Down : Geo Map, Store_nbr and Item_nbr Preview</h6>                 -->
+                </div>
+            </section>
+            <section>
+				<div>
+					<!-- <p>Geo Map</p> -->
+					<div id='geoMapDiv' style='width:100%;height:100%;'>
+					<script>initialGeoMap();</script>
+					</div>
+				</div>
+			</section>
+            <section style='width: 100%;height: 100%;'>
+				
+                <div class='tableauPlaceholder' id='viz1552023628551' style='position: relative'>
+                    <noscript>
+                    <a href='#'>
+                        <img alt=' ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;QR&#47;QRGH7B7BX&#47;1_rss.png' style='border: none ' />
+                    </a>
+                    </noscript>
+                    <object class='tableauViz'  style='display:none;'>
+                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+                        <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;QRGH7B7BX' /> 
+                        <param name='toolbar' value='yes' />
+                        <param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;QR&#47;QRGH7B7BX&#47;1.png' /> 
+                        <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' />
+                        <param name='display_spinner' value='yes' />
+                        <param name='display_overlay' value='yes' />
+                        <param name='display_count' value='yes' />
+                        <param name='filter' value='publish=yes' />
+                    </object>
+                </div>
+                   
+			</section>
+          
+            <section>
+				
+				<div>
+					<iframe src='http://r.xnet.world:9010/' style='width:90%;height:100%;'></iframe>
+				</div>
+            </section>
+            <section>
+                <div>
+                    <img src="./pic/overview/overview6.jpg" alt="" title="" width=80% height=96% >
+                </div>
+                <div class="direction">
+                </div>
+            </section>
+            <section>
+                <div>
+                    <img src="./pic/overview/overview7.jpg" alt="" title="" width=80% height=96% >
+                </div>
+                <div class="direction">
+                </div>
+            </section>
+            <section>
+                <div>
+                    <img src="./pic/overview/overview8.jpg" alt="" title="" width=80% height=96% >
+                </div>
+                <div class="direction">
+                </div>
+            </section>
+        </section>
+        </section>
+        <section>
+            <section>
+                <h1>專題介紹</h1>
+            </section>
+            <section>
+                <img src="./pic/overview/overview2.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/overview/overview3.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/overview/overview4.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/overview/overview5.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            
+        </section>
+        <section>
+            <section>
+                <h1>成員介紹</h1>
+            </section>
+            <section>
+                <img src="./pic/team/team1.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/team/team2.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/team/team3.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/team/team4.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/team/team5.JPG" alt="" title="" width=80% height=96% >
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>使用工具</h1>
+            </section>
+            <section>
+                <img src="./pic/tools/tools.JPG" alt="" title="" width=80% height=96% >
+            </section>       
+        </section>
+        <section>
+            <section>
+                <h1>Hadoop 系統</h1>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop1.JPG" alt="" title="" width=80% height=96% >
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop2.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop3.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop4.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop5.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop6.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop7.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop8.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop9.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/hadoop/hadoop10.JPG" alt="" title="" width=80% height=96%>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>探索性資料分析</h1>
+            </section>
+            <section>
+                <img src="./pic/eda/eda1.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda2.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda3.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda4.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda5.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda6.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda7.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda8.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda9.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda10.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda11.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda12.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda13.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda14.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda15.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda16.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda17.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda18.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda19.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda20.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda21.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/eda/eda22.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            
+            
+        </section>
+        <section>
+            <section>
+                <h1>資料前處理</h1>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre1.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre2.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre3.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre4.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre5.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre6.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre7.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/preprocessing/pre8.JPG" alt="" title="" width=80% height=96%>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>特徵工程</h1>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片57.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片58.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片59.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片60.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片61.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片62.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片63.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片64.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片65.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片66.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片67.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片68.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片69.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片70.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片71.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片72.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片73.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片74.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片75.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片76.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片77.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片78.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片79.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片80.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片81.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片82.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片83.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片84.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片85.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片86.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片87.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片88.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片89.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片90.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片91.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片92.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片93.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片94.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片95.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片96.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片97.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片98.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/feature/投影片99.JPG" alt="" title="" width=80% height=96%>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h1>模型建置</h1>
+            </section>
+            <section>
+                <img src="./pic/model/投影片100.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片101.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片102.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片103.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片104.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片105.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片106.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            <section>
+                <img src="./pic/model/投影片107.JPG" alt="" title="" width=80% height=96%>
+            </section>
+            
+        </section>
+    </div>
+</div>
+<script>
+    Reveal.initialize({
+        // 參數設定[註1]
+        controls: true, // 控制按鈕
+        controlsTutorial: true, // 引導初學者功能
+        controlsLayout: 'bottom-right', // 控制按鈕位置
+        controlsBackArrows: 'faded', // 返回按鈕顯示方式
+        progress: true, // 簡報進度條
+        slideNumber: false, // 簡報當前頁碼
+        history: false, // 所有動作儲存在歷史紀錄
+        keyboard: true, // 鍵盤快捷鍵
+        overview: true, // 簡報導覽模式
+        center: true, // 簡報垂直置中
+        touch: true, // 觸碰模式
+        loop: false, // 循環模式
+        rtl: false, // 簡報方向為RTL模式
+        shuffle: false, // 簡報顯示順序為隨機模式
+        autoPlayMedia: null, // 簡報內影音媒體為自動播放
+        autoSlide: 0, // 自動切換的秒數，0秒代表不自動
+        autoSlideStoppable: true, // 使用者在操作時停止自動切換
+        autoSlideMethod: Reveal.navigateNext, // 自動切換觸發的函式
+        mouseWheel: false, // 滑鼠滾輪可以切換簡報
+        transition: 'slide', // 轉場動畫
+        transitionSpeed: 'default', // 轉場速度
+        backgroundTransition: 'fade', // 簡報背景的轉場動畫
+        parallaxBackgroundImage: '', // 背景視差圖片
+        parallaxBackgroundSize: '', // 背景視差圖片尺寸(單位: 像素)
+        parallaxBackgroundHorizontal: null, // 水平背景視差，0為停止視差，null為自動計算(單位: 像素)
+        parallaxBackgroundVertical: null // 垂直背景視差，0為停止視差，null為自動計算(單位: 像素)
+    });
+</script>
+<script type='text/javascript'>                    
+	var divElement = document.getElementById('viz1552023628551');                    
+	var vizElement = divElement.getElementsByTagName('object')[0];                    
+	if ( divElement.offsetWidth > 800 ) 
+		{ vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} 
+	else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} 
+	else { vizElement.style.width='100%';vizElement.style.height='727px';}                     
+	var scriptElement = document.createElement('script');                    
+	scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+	vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+</script>
+</body>
