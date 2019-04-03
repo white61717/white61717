@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <style>
+
+    body{
+        background-color: #ececec;
+        margin: 0;
+    }
+    #topTitle{
+        height: 100px;
+        margin:0;
+        background-color: #ffffff;
+        text-align: center
+    }
+    .topTitleText{
+        margin-left:4.8%; 
+        font-size: 25px;
+        font-family: Microsoft JhengHei;
+        font-weight: bold;
+        color:#cac9c9
+    }
+    .topTitleDiv{
+        padding-top: 1.3%;
+        text-align: center;
+    }
+    .sideTitleTextTitle{
+        margin-right:4.8%;
+        margin-left:4.8%;
+        margin-bottom: 0%;
+        /* padding-bottom: 20%; */
+        font-size: 20px;
+        font-family: Microsoft JhengHei;
+        font-weight: bold;
+        text-align: center;
+        color: black
+    }
+    .sideTitleText{
+        margin-right:4.8%;
+        margin-left:4.8%;
+        padding-bottom: 20%;
+        font-size: 20px;
+        font-family: Microsoft JhengHei;
+        font-weight: bold;
+        text-align: center;
+        color: #cac9c9
+
+    }
+    .container{
+        width: 10.4%;
+        height: 1094px;
+        margin-top: 1.2%;
+        margin-left:1.7%;
+        background-color: #ffffff;
+        display: inline-block;
+        padding-top: 10%;
+        position: absolute;
+    }
+    .sideTitleDiv{
+        padding-top: 70%;
+        
+    }
+
+    .container2{
+        width: 84%;
+        height: 104px;
+        margin-top: 1.2%;
+        margin-left:1.7%;
+        background-color: #ffffff;
+        display: inline-block;  
+        position: relative;
+        left:12.5%;
+    }
+    .content { 
+    max-width: 100%;
+    position: relative;
+    }
+    .text{
+        width: 84%;
+        margin-top: 2%;
+        margin-left:1.7%;
+        display: inline-block;  
+        position: relative;
+        left:12.5%;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: Microsoft JhengHei;
+    }
+    .text .span{
+        font-size: 30px;
+        font-weight: bold;
+        font-family: Microsoft JhengHei;
+    }
+    .cate{
+        width: 84%;
+        margin-top: 2%;
+        margin-left:1.7%;
+        margin-right:5%;
+        line-height:100px;
+        font-size: 22px;
+        font-weight: bold;
+        font-family: Microsoft JhengHei;
+        color: #cac9c9
+    }
+    .cateText{
+        margin-left:3%; 
+        padding-left: 3%;
+        font-size: 22px;
+        font-family: Microsoft JhengHei;
+        font-weight: bold;
+        color:black;
+        border-left: 1px solid #cac9c9;
+    }
+    body > div.content > div.container2 > span:nth-child(2){
+        border-left: 0px solid #cac9c9;
+    }
+    .container3{
+        width: 41%;
+        height: 874px;
+        margin-top: 1.2%;
+        margin-left:1.7%;
+        background-color: #ffffff;
+        display: inline-block; 
+        position: relative; 
+        left:12.5%
+    }
+    body > div.content > section{
+        display: inline-block; 
+        position: relative; 
+        left:25.5%;
+        /* top:80% */
+    }
+    #pieChartDiv{
+        width:84%;
+        margin-left:20%
+    }
+    .tick text{
+        font-size: 20px;
+        font-family: Microsoft JhengHei;
+    }
+    </style>
+</head>
+<body>
+    <div id="topTitle">
+        <div class="topTitleDiv">
+            <span class="topTitleText">總覽</span>
+            <span class="topTitleText">數據分析</span>
+            <span class="topTitleText">安裝設定</span>
+            <span class="topTitleText">帳務報表</span>
+            <span class="topTitleText">功能購買</span>
+        </div>
+    </div>
+
+
+
+    <div class="content">
+
+        <div class="container">
+            <p class="sideTitleTextTitle">今周刊智能數據分析</p>
+            <hr color="#ececec" width="70%">
+            <p class="sideTitleText">訪客總覽</p>
+            <p class="sideTitleText">流量來源</p>
+            <p class="sideTitleText">熱門頁面</p>
+            <p class="sideTitleText">互動指標</p>
+            <p class="sideTitleText">用戶畫像</p>
+            <p class="sideTitleText">用戶分群</p>
+            <p class="sideTitleText">資產價值</p>
+        </div>
+        
+        <div class="text"><span class="span">用戶分群</span> / 用戶喜好</div>
+
+        <div class="container2"> 
+            <span class="cate">選擇分類方式</span>
+            <span class="cateText">FB/GOOGLE</span>
+            <span class="cateText">PC/Moblie</span>
+            <span class="cateText">新舊用戶</span>
+            <span class="cateText">區域</span>
+
+        </div>
+                <div>
+                    <header>
+                    </header>
+                    <div class="row aln-center">
+                        <div class="col-4 col-6-medium col-12-small" id='pieChartDiv'>
+                        </div>
+                    </div>
+                </div>
+    </div>
+
+    <script src='sunBrustChart.js'></script>
+    <script>
+        function singlePieChart(data) {
+            
+
+            for(j = 3 ;j < data.length ; j++){
+                data[3].click += data[j].click
+                data[3].percentageNum += Math.round(data[j].percentageNum)
+            }
+            data[3].from = "Others"
+            for(k = 4 ; k < data.length ; k++){
+                delete data[k]
+            }
+            data.length = 4
+            console.log(data)
+
+
+
+            var pieChartDiv = d3.select('#pieChartDiv')
+            pieChartDiv.append('section')
+                // .append('header')
+                // .append('h3')
+                // .text('流量來源解析')
+                .style('margin-top', '10%')
+                // .style('margin-left', "30%")
+                // .style('font-family', "Microsoft JhengHei")
+
+            // pieChartDiv.select('section header')
+            //     .append('h4')
+            //     .text(data[0].Date)
+
+            // var w = d3.select('#page-wrapper > section').style('width')
+            // w = w.substr(0, w.length - 2)
+            var w = 1200
+            var h = 700
+            var outerR = Math.min(w, h) / 2.5
+            var innerR = outerR * 0.7
+
+            var svg = pieChartDiv.select('section')
+                .append('svg')
+                .attr('width', w)
+                .attr('height', h)
+                .append('g')
+                .attr('transform', `translate(${w / 2}, ${h / 2})`)
+
+            var color = d3.scaleOrdinal(["#FDB815","#F8941D", "#F01B26", "#D75729", "#a6d854", "#ffd92f"])
+
+            var pie = d3.pie()
+                .value(function(d, i) {
+                    return d.click
+                })
+
+            var arc = d3.arc()
+                .innerRadius(innerR)
+                .outerRadius(outerR)
+
+            var pieData = data
+            console.log(pie(pieData))
+            if (pieData == 'none') {
+
+                svg.remove()
+
+                pieChartDiv.select('section header')
+                    .append('h4')
+                    .text('無站外流量')
+                    .style('margin-top', '15%')
+                    .style('font-size', '30px')
+                    .style('font-weight', '600')
+                    .style('font-family', "Microsoft JhengHei")
+            } else {
+                //新增%數文字
+                svg.append("text").attr("id","percentage")
+                                    .text(0 + "%")
+                                    .attr('font-weight', '600')
+                                    .attr('text-anchor', 'middle')
+                                    .attr("transform", "translate(" + -295 + ", " + 0 + ")")
+                                    .style('font-size', '80px')
+                                    .style('font-family', "Microsoft JhengHei")
+
+                svg.append("text").attr("id","name")
+                                    .text("")
+                                    .attr('font-weight', '600')
+                                    .attr('text-anchor', 'middle')
+                                    .attr("transform", "translate(" + -295 + ", " + 0 + ")")
+                                    .attr("dy","60px")                                    
+                                    .style('font-size', '40px')
+                                    .style('font-family', "Microsoft JhengHei")
+
+                svg.selectAll('path')
+                    .data(pie(pieData))
+                    .enter()
+                    .append('path')
+                    .attr('fill', function(d, i) { return color(i) })
+                    .attr('d', arc)
+                    .attr('stroke', '#ececec')
+                    .attr('stroke-width', '0px')
+                    .attr("transform", "translate(" + -300 + ", " + 0 + ")")
+                    .on("mouseover",function(d,i){
+                        d3.select(this).transition().attr("d",d3.arc().innerRadius(innerR).outerRadius(outerR * 1.05))
+
+                        svg.select("#percentage").transition()
+                        .attr("fill",color(i))
+                        .tween("text",  function() {
+                            var change = d3.interpolateRound(0, data[i].percentageNum);
+                                return function(t) {
+                                this.textContent = change(t) + "%";
+                            } 
+                        })
+
+                        svg.select("#name")
+                            .text(function(){return data[i].from})
+                            .attr("fill",color(i))
+                    }) 
+                    .on("mouseout",function(d,i){
+                        d3.select(this).transition().attr("d",d3.arc().innerRadius(innerR).outerRadius(outerR))
+                        // d3.select("#percentage").transition().text(0 + "%")
+                    })
+                    .each(function(d, i) { this._current = d })
+
+                //長條圖
+                svg.selectAll(".barChart")
+                    .data(data)
+                    .enter()
+                    .append("rect")
+                    .attr("class","barChart")
+                    .attr("transform", "translate(" + 160 + ", " + 0 + ")")
+                    .attr('y',function(d,i){return i *40})
+                    // .attr('fill','#a6d854')
+                    .attr('fill',function(d,i){
+                        return color(i)
+                    })
+                    .attr('height','25px')
+                    .attr('width',0)
+                    .transition()
+                    .duration(1000)
+                    .attr('width',function(d,i){
+                        return data[i].click / 25  
+                    })
+
+                //比例尺
+                var xScale = d3.scaleLinear()
+                    .domain([0, data.length+1])
+                    .range([0, 200])    
+
+                var yScale = d3.scaleLinear()
+                    .domain([0, data[0].click*1.2])
+                    .range([0, Math.round(data[0].click/25*1.2)])      
+                    
+                svg.append("g")
+                    .attr("class", "xAxis")
+                    .attr("transform", "translate(" + 160 + "," + -30 + ")")
+                    .call(d3.axisLeft(xScale)
+                    .tickValues([1,2,3,4])
+                    .tickFormat(function(d,i){
+                        return data[i].from
+                    })
+                    .tickSizeInner(0).tickSizeOuter(0));
+
+                svg.append("g")
+                    .attr("class", "yAxis")
+                    .attr("transform", "translate(" + 160 + "," + 170 + ")")
+                    .call(d3.axisBottom(yScale).ticks(5).tickSizeOuter(0))
+
+                var schemaR = 8
+
+                svg.selectAll('.pieSchema')
+                    .data(pieData)
+                    .enter()
+                    .append('circle')
+                    .attr('class', 'pieSchema')
+                    .attr('r', schemaR)
+                    .attr('cx', w * 0.2 - schemaR * 2.5)
+                    .attr('cy', function(d, i) { return i * 30 - schemaR - h * 0.4 })
+                    .attr('fill', function(d, i) {
+                        return color(i)
+                    })
+                    console.log(pieData)
+                svg.append('text')
+                    .selectAll('.pieText')
+                    .data(pieData)
+                    .enter()
+                    .append('tspan')
+                    .attr('class', 'pieText')
+                    .attr('x', w * 0.2  )
+                    .attr('y', function(d, i) { return i * 30 - h * 0.4 })
+                    .attr('font-size', '20px')
+                    .attr('font-weight', '600')
+                    .style('font-family', "Microsoft JhengHei")
+                    .attr('fill', function(d, i) {
+                        return color(i)
+                    })
+                    .attr('overflow', 'hidden')
+                    .text(function(d, i) {
+                        if ((d.click) > 10) {
+                            return (d.from).slice(0, 10)
+                        } else {
+                            return d.from
+                        }
+                    })
+
+                svg.selectAll('.pieValue')
+                    .data(pieData)
+                    .enter()
+                    .append('text')
+                    .attr('class', 'pieValue')
+                    .attr('x', w * 0.5)
+                    .attr('y', function(d, i) { return i * 30 - h * 0.4 })
+                    .attr('text-anchor', 'end')
+                    .attr('font-size', '20px')
+                    .attr('font-weight', '400')
+                    .style('font-family', "Microsoft JhengHei")
+                    .attr('fill', function(d, i) {
+                        return color(i)
+                    })
+                    .text(function(d, i) {
+                        return d.click
+                    })
+
+            }
+
+}   
+
+    function userPieChart(data){
+
+        var temp = {}
+        temp.name = "既有用戶"
+        temp.people = Object.values(data[0])[0]
+        var temp2 = {}
+        temp2.name = "新用戶"
+        temp2.people = Object.values(data[0])[1]
+        var data = []
+        data.push(temp,temp2)
+        console.log(data)
+
+        var pieChartDiv = d3.select('#pieChartDiv')
+        pieChartDiv.append('section')
+                    .style('margin-top', '10%')
+
+        var w = 1400
+        var h = 700
+        var outerR = Math.min(w, h) / 2.1
+        var innerR = outerR * 0.7
+
+        var color = d3.scaleOrdinal(["#FDB815","#F8941D", "#F01B26", "#D75729", "#a6d854", "#ffd92f"])
+
+        var pie = d3.pie()
+                    .value(function(d, i) {
+                        return d.people
+                    })
+
+        var arc = d3.arc()
+            .innerRadius(innerR)
+            .outerRadius(outerR)
+
+        var svg = pieChartDiv.select('section')
+                .append('svg')
+                .attr('width', w)
+                .attr('height', h)
+                .append('g')
+                .attr('transform', `translate(${w / 2}, ${h / 2})`)
+
+        svg.selectAll('path')
+            .data(pie(data))
+            .enter()
+            .append('path')
+            .attr('fill', function(d, i) { return color(i) })
+            .attr('d', arc)
+            .attr('stroke', '#ececec')
+            .attr('stroke-width', '0px')
+            .attr("transform", "translate(" + 0 + ", " + 0 + ")")
+            .on("mouseover",function(d,i){
+                d3.select(this).transition().attr("d",d3.arc().innerRadius(innerR).outerRadius(outerR * 1.05))
+
+                svg.select("#percentage2").transition()
+                .attr("fill",color(i))
+                .tween("text",  function() {
+                    var change = d3.interpolateRound(0, data[i].people);
+                        return function(t) {
+                        this.textContent = change(t) + "人";
+                    } 
+                })
+
+                svg.select("#name2")
+                    .text(function(){return data[i].name})
+                    .attr("fill",color(i))
+            }) 
+            .on("mouseout",function(d,i){
+                d3.select(this).transition().attr("d",d3.arc().innerRadius(innerR).outerRadius(outerR))
+            })
+            .each(function(d, i) { this._current = d })
+
+        svg.append("text").attr("id","percentage2")
+                            .text(0 + "人")
+                            .attr('font-weight', '600')
+                            .attr('text-anchor', 'middle')
+                            .attr("transform", "translate(" + 5 + ", " + 5 + ")")
+                            .style('font-size', '80px')
+                            .style('font-family', "Microsoft JhengHei")
+
+        svg.append("text").attr("id","name2")
+                            .text("")
+                            .attr('font-weight', '600')
+                            .attr('text-anchor', 'middle')
+                            .attr("transform", "translate(" + 5 + ", " + 5 + ")")
+                            .attr("dy","60px")                                    
+                            .style('font-size', '40px')
+                            .style('font-family', "Microsoft JhengHei")
+
+
+        svg.selectAll("#text2")
+            .data(pie(data))
+            .enter()
+            .append("text")
+            .attr("id","text2")
+            .attr("transform", function(d) {
+                console.log(pie(data))
+                return "translate(" + arc.centroid(d) + ")";
+            })
+            .attr('font-size', '40px')
+            .attr('font-weight', '400')
+            .attr("text-anchor", "middle")
+            .attr("fill", "white")
+            .attr("dy", ".35em")
+            .text(function(d,i){
+                return Math.round(data[i].people * 100 / (data[0].people + data[1].people)) + "%"
+            })
+            .style('font-family', "Microsoft JhengHei")
+            .on("mouseover",function(d,i){
+                svg.select("#percentage2").transition()
+                .attr("fill",color(i))
+                .tween("text",  function() {
+                    var change = d3.interpolateRound(0, data[i].people);
+                        return function(t) {
+                        this.textContent = change(t) + "人";
+                    } 
+                })
+
+                svg.select("#name2")
+                    .text(function(){return data[i].name})
+                    .attr("fill",color(i))
+            }) 
+            .on("mouseout",function(d,i){
+                d3.select(this).transition().attr("d",d3.arc().innerRadius(innerR).outerRadius(outerR))
+            })
+            .each(function(d, i) { this._current = d })
+              
+}
+
+    // d3.json("http://r.xnet.world:19999/userData")
+    //     .then(function(data){
+    //         console.log(data)
+    //         userPieChart(data)
+    //     })
+
+    d3.json("http://r.xnet.world:19999/referenceData")
+        .then(function(data){
+            console.log(data)
+            singlePieChart(data)
+    })
+
+
+        d3.selectAll("#topTitle > div > span")
+        .on("mouseover",function(){
+            d3.select(this).transition().duration(200).style("color","black")
+        }).on("mouseout",function(){
+            d3.select(this).transition().duration(200).style("color","#cac9c9")
+        })
+
+
+
+        d3.selectAll(".cateText")
+        .on("click",function(d,i){
+            if(i==0){
+                
+            }else if(i == 1){
+                d3.select("svg").remove()
+                sunbrustChart()
+            }else if(i == 2){
+                d3.select("svg").remove()
+                d3.json("http://r.xnet.world:19999/userData")
+                    .then(function(data){
+                        console.log(data)
+                        userPieChart(data)
+                    })
+            }else if(i == 3){
+                d3.select("svg").remove()
+            }
+        })
+    </script>
+    </body>
+</html>
