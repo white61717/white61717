@@ -1,0 +1,6 @@
+Names <- train %>% select_if(function(x){is.numeric(x) || is.integer(x)}) %>% names
+
+lapply(Names,function(t){
+  filename <- paste0('E:/Desktop/pic/', t, '.png')
+  ggsave(filename , plot = ggplot(data=train, aes(x = total_price, y = train[,t] )) + geom_point() + ylab(t))
+})
