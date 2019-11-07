@@ -44,10 +44,8 @@ print("crawling......")
     title <- temp.html %>% html_node('#article > div.wrapper > div > main > article > hgroup > h1') %>% html_text()
     dateTime <- temp.html %>% html_node('#article > div.wrapper > div > main > article > hgroup > div.ndArticle_creat') %>% html_text()
     content <- temp.html %>% html_nodes(xpath = '//*[@id="article"]/div[1]/div/main/article/div[2]/div[2]/article/div[1]/p[1]/text()') %>% 
+      html_text() %>%
       paste(., collapse = ' ') %>%
-      gsub('<p>','',.) %>%
-      gsub('</p>','',.) %>% 
-      gsub('<br>','',.) %>%
       gsub('\n','',.) %>%
       gsub('\U00A0','',.) %>%
       gsub('\U63D1','',.)
