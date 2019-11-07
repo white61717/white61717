@@ -1,4 +1,5 @@
 library(tidyverse)
+library(RSelenium)
 library(rvest)
 library(stringr)
 library(jiebaR)
@@ -13,7 +14,7 @@ category <- 'world'
 ltnUrl <- paste0(ltn, category)
 
 
-remDr <- remoteDriver(
+remDr <- remoteDriver$new(
   remoteServerAddr = "localhost",
   port = 4444,
   browserName = "chrome",
@@ -54,19 +55,13 @@ clusterExport(cl,'article.list')
 
 print("crawling......")
 temp <- parLapply(cl,article.list, function(article){
-  article <- 'https://news.ltn.com.tw/news/world/breakingnews/2969216'
+
   temp.html <- article %>% GET() %>% content()
   title <- temp.html %>% html_node('.whitecon h1') %>% html_text()
   dateTime <- temp.html %>% html_node('.whitecon span.time') %>% html_text() %>% parse_datetime("%Y-%m-%d %H:%M:%S") %>% as.Date()
-  content <- temp.html %>% html_nodes('.whitecon p') %>%
+  content <- temp.html %>% html_nodes('.whitecon p:not(.before_ir):not(.appE1121)') %>%
     html_text() %>% 
     paste(.,collapse = ' ') %>%
-    gsub('請繼續往下閱讀...','',.) %>%
-    gsub('不用抽 不用搶 現在用APP看新聞 保證天天中獎','',.) %>%
-    gsub('\n','',.) %>%
-    gsub('點我下載APP','',.) %>%
-    gsub('按我看活動辦法','',.) %>%
-    gsub('　','',.) %>%
     trimws(.)
   temp <- data.frame(title = title, dateTime = dateTime, content = content, stringsAsFactors = F)
   return(temp)
@@ -87,40 +82,40 @@ all <- temp %>%
 print("NLPing......")
 jieba.worker <- worker()
 
-
-article.date <- all %>%
-  group_by(dateTime) %>% # 以每⽇做分組
-  do((function(input) {
-    freq(segment(input$content, jieba.worker)) %>% # 斷詞後計算詞頻   # 分詞segment(文章,結巴引擎) output= 'X' 'A' 'B'...
-      filter(
-        !(char %in% toTrad(stopwordsCN())), # 過濾 stopword (的、吧、阿...)  # toTrad把簡體轉繁體
-        !(char %in% c('報導','綜合','即時新聞')), # 過濾 stopword (的、吧、阿...)  # toTrad把簡體轉繁體
-        !str_detect(char, "[A-z0-9]"), # 過濾英⽂數字
-        nchar(char) > 1 # 過濾單個字
-      ) %>%
-      arrange(desc(freq)) %>% # 以詞頻排序
-      slice(1:100) %>% # 取前 100
-      return
-  })(.)) %>%
-  ungroup
-
-article.date.words <- freq(article.date$char) %>%
-  rename(freq.all = freq)
-
-
-article.everyday <- article.date %>%
-  left_join( # ⽐對全部詞
-    article.date.words,
-    by = 'char'
-  ) %>%
-  group_by(dateTime) %>% # 以每⽇做分組
-  arrange(freq.all) %>% # 每組的詞頻做排序由⼩到⼤
-  slice(1:5) %>% # 取每組前 5
-  summarise( # 合併詞並對詞頻加總
-    char = str_c(char, collapse = ", "),
-    freq = sum(freq)
-  ) %>%
-  ungroup
+# 
+# article.date <- all %>%
+#   group_by(dateTime) %>% # 以每⽇做分組
+#   do((function(input) {
+#     freq(segment(input$content, jieba.worker)) %>% # 斷詞後計算詞頻   # 分詞segment(文章,結巴引擎) output= 'X' 'A' 'B'...
+#       filter(
+#         !(char %in% toTrad(stopwordsCN())), # 過濾 stopword (的、吧、阿...)  # toTrad把簡體轉繁體
+#         !(char %in% c('報導','綜合','即時新聞')), # 過濾 stopword (的、吧、阿...)  # toTrad把簡體轉繁體
+#         !str_detect(char, "[A-z0-9]"), # 過濾英⽂數字
+#         nchar(char) > 1 # 過濾單個字
+#       ) %>%
+#       arrange(desc(freq)) %>% # 以詞頻排序
+#       slice(1:100) %>% # 取前 100
+#       return
+#   })(.)) %>%
+#   ungroup
+# 
+# article.date.words <- freq(article.date$char) %>%
+#   rename(freq.all = freq)
+# 
+# 
+# article.everyday <- article.date %>%
+#   left_join( # ⽐對全部詞
+#     article.date.words,
+#     by = 'char'
+#   ) %>%
+#   group_by(dateTime) %>% # 以每⽇做分組
+#   arrange(freq.all) %>% # 每組的詞頻做排序由⼩到⼤
+#   slice(1:5) %>% # 取每組前 5
+#   summarise( # 合併詞並對詞頻加總
+#     char = str_c(char, collapse = ", "),
+#     freq = sum(freq)
+#   ) %>%
+#   ungroup
 
 
 print("saving......")
