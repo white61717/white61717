@@ -1,6 +1,3 @@
-library(tidyverse)
-library(rvest)
-library(stringr)
 library(jiebaR)
 library(tmcn)
 library(parallel)
@@ -8,6 +5,8 @@ library(xml2)
 library(httr)
 
 #====================================================蘋果日報============================================================
+print('Apple')
+
 apple <- 'https://tw.news.appledaily.com'
 category <- '/international/realtime/'
 appleUrl <- paste0(apple, category)
@@ -39,7 +38,7 @@ temp <- NULL
 
 print("crawling......")
   temp <- parLapply(cl, article.list, function(article){
-    
+
     temp.html <- article %>% GET() %>% content()
     title <- temp.html %>% html_node('#article > div.wrapper > div > main > article > hgroup > h1') %>% html_text()
     dateTime <- temp.html %>% html_node('#article > div.wrapper > div > main > article > hgroup > div.ndArticle_creat') %>% html_text()
