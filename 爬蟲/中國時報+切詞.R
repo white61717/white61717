@@ -56,8 +56,8 @@ temp <- parLapply(cl, article.list, function(article){
 }) %>% bind_rows(.)
 
 
-# stopCluster(cl)
-# gc()
+stopCluster(cl)
+gc()
 
 
 #去掉NA的新聞(影片新聞)
