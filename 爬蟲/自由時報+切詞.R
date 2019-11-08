@@ -8,6 +8,7 @@ library(parallel)
 library(xml2)
 library(httr)
 #====================================================自由時報============================================================
+print('ltn')
 
 ltn <- 'https://news.ltn.com.tw/list/breakingnews/'
 category <- 'world'
