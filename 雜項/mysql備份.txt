@@ -1,0 +1,161 @@
+
+
+
+##dump備份
+mysqldump -uroot -p密碼  --opt --default-character-set=utf8mb4  project99> /data/dbbackup/temp_dbbackup/NNWW_JP_S_Backup.sql
+
+##Deploy
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6
+##先連 Deploy 再 ssh
+ssh 192.168.140.101	master
+ssh 192.168.140.102	slave
+ssh 192.168.140.103	log
+
+
+
+## NNJP_JP
+## 開始dump Master
+mysqldump -uroot -ppfyPiulzZMYc61LZajTw --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNJP_JP_M_Backup.sql.gz
+## 開始dump Slave
+mysqldump -uroot -pjEvDYewGTmeZ0sXihsMe --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNJP_JP_S_Backup.sql.gz
+## 開始dump Log
+mysqldump -uroot -pSy6Jqpy6YdAmhJZ0uoIV --opt --default-character-set=utf8mb4  project99_log | gzip > /data/dbbackup/temp_dbbackup/NNJP_JP_L_Backup.sql.gz
+
+
+## NNWW_JP
+## 開始dump Master
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_JP_M_Backup.sql.gz
+## 開始dump Slave
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_JP_S_Backup.sql.gz
+## 開始dump Log
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99_log | gzip > /data/dbbackup/temp_dbbackup/NNWW_JP_L_Backup.sql.gz
+
+
+## NNWW_SG
+## 開始dump Master
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_SG_M_Backup.sql.gz
+## 開始dump Slave
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_SG_S_Backup.sql.gz
+## 開始dump Log
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99_log | gzip > /data/dbbackup/temp_dbbackup/NNWW_SG_L_Backup.sql.gz
+
+
+## NNWW_SP
+## 開始dump Master
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_SP_M_Backup.sql.gz
+## 開始dump Slave
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_SP_S_Backup.sql.gz
+## 開始dump Log
+mysqldump -uroot -pI7Yv4a9Gsrbe6lxfeQ2i --opt --default-character-set=utf8mb4  project99_log | gzip > /data/dbbackup/temp_dbbackup/NNWW_SP_L_Backup.sql.gz
+
+
+
+## NNWW_US
+## 開始dump Master
+mysqldump -uroot -p2Gq6bYBrt9GiZ1caVgq3 --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_US_M_Backup.sql.gz
+## 開始dump Slave
+mysqldump -uroot -p2Gq6bYBrt9GiZ1caVgq3 --opt --default-character-set=utf8mb4  project99 | gzip > /data/dbbackup/temp_dbbackup/NNWW_US_S_Backup.sql.gz
+## 開始dump Log
+mysqldump -uroot -p2Gq6bYBrt9GiZ1caVgq3 --opt --default-character-set=utf8mb4  project99_log | gzip > /data/dbbackup/temp_dbbackup/NNWW_US_L_Backup.sql.gz
+
+
+
+## Master解壓
+gunzip /data/dbbackup/temp_dbbackup/NN*.gz .
+
+## Slave解壓
+gunzip /data/dbbackup/temp_dbbackup/NN*.gz .
+
+## Log解壓
+tar zxvf /data/dbbackup/temp_dbbackup/NNJP_L_Backup.sql.tar.gz
+gunzip /data/dbbackup/temp_dbbackup/NNWW*.gz .	
+rm /data/dbbackup/temp_dbbackup/NNJP_JP_L_Backup.sql.tar.gz
+
+
+
+##Master 解dump
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_jp < /data/dbbackup/temp_dbbackup/NNJP_JP_M_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_jp < /data/dbbackup/temp_dbbackup/NNWW_JP_M_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sg < /data/dbbackup/temp_dbbackup/NNWW_SG_M_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sp < /data/dbbackup/temp_dbbackup/NNWW_SP_M_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_us < /data/dbbackup/temp_dbbackup/NNWW_US_M_Backup.sql
+
+
+##Slave 解dump
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_jp < /data/dbbackup/temp_dbbackup/NNJP_JP_S_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_jp < /data/dbbackup/temp_dbbackup/NNWW_JP_S_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sg < /data/dbbackup/temp_dbbackup/NNWW_SG_S_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sp < /data/dbbackup/temp_dbbackup/NNWW_SP_S_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_us < /data/dbbackup/temp_dbbackup/NNWW_US_S_Backup.sql
+
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_us < /data/dbbackup/temp_dbbackup/NNWW_US_M_2_Backup.sql
+
+
+##Master 解dump
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_jp_log < /data/dbbackup/temp_dbbackup/NNJP_JP_L_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_jp_log < /data/dbbackup/temp_dbbackup/NNWW_JP_L_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sg_log < /data/dbbackup/temp_dbbackup/NNWW_SG_L_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_sp_log < /data/dbbackup/temp_dbbackup/NNWW_SP_L_Backup.sql
+mysql -uroot -pg7PYzqlHdOj2hApRdOx6 project99_ww_us_log < /data/dbbackup/temp_dbbackup/NNWW_US_L_Backup.sql
+
+
+
+
+
+查詢所有資料庫大小
+若要查詢每個資料庫（databases）的資料大小，可以使用這段指令：
+
+SELECT table_schema AS "Database Name",
+  ROUND(SUM(data_length + index_length) / 1024 / 1024, 2)
+  AS "Size in (MB)"
+  FROM information_schema.TABLES
+  GROUP BY table_schema;
+
+
+
+查詢資料表大小
+若要查詢某個資料庫中所有的資料表（tables）的大小，可以使用這段指令：
+
+SELECT table_name AS "Table Name",
+  ROUND(((data_length + index_length) / 1024 / 1024), 2)
+  AS "Size in (MB)"
+  FROM information_schema.TABLES
+  WHERE table_schema = "project99_ww_jp"
+  ORDER BY (data_length + index_length) DESC;
+
+查詢資料庫定序
+
+SELECT 
+   default_character_set_name, 
+   default_collation_name,
+   SCHEMA_NAME
+FROM information_schema.schemata;
+
+
+資料庫定序
+create database project99_ww_us_test CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+資料庫壓縮
+mysqlcheck -A -o -uroot -pg7PYzqlHdOj2hApRdOx6
+
+設定master - slave
+先到master 
+show master status
+再到slave
+stop slave;
+CHANGE MASTER TO
+MASTER_HOST='192.168.140.101',
+MASTER_USER='slave',
+MASTER_PASSWORD='svpLdWQ7piXCEn6SyjWu',
+MASTER_LOG_FILE='binlog.000441',
+MASTER_LOG_POS=149731;
+
+
+
+Percona 部分備份
+
+innobackupex --databases="project99_ww_sp" /data/dbbackup/temp_dbbackup/backup_test/ --user=root --password=g7PYzqlHdOj2hApRdOx6
+
+innobackupex --apply-log --export /data/dbbackup/temp_dbbackup/backup_test/2020-01-02_15-00-31/
+
+cp /data/dbbackup/temp_dbbackup/20191231/PNN-Master-DB-20191231/project99_ww_sp/2020-01-02_13-00-42/* /var/lib/mysql -rf
